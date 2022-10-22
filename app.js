@@ -10,6 +10,7 @@ app.use(cors())
 // declare the routes
 app.use('/tours', toursRouter)
 
+
 // test route
 app.get('/', (req, res) => {
     res.send("Route is working")

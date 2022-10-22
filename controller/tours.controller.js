@@ -1,11 +1,40 @@
-const { createATourService } = require("../services/tours.service")
+const { createATourService, getAlltoursService } = require("../services/tours.service")
 
 
-
+// get all data
 module.exports.getAlltours = async (req, res, next) => {
-    res.send("get all tours api hitted")
+    try {
+        //find by query
+        const queries = {}
+        if (req.query.fields) {
+            const fields = req.query.fields.split(",").join(" ");
+
+            queries.fields = fields;
+        }
+
+        if (req.query.sort) {
+            const sortby = req.query.sort
+            queries.sortby = sortby;
+        }
+
+        const data = await getAlltoursService(queries);
+
+        res.status(200).json({
+            status: "Success",
+            data: data
+        })
+    } catch (error) {
+        res.status(400).json({
+            status: "Failed",
+            message: "Can't get the data",
+            error: error.message
+        })
+    }
+
 }
 
+
+// post a data
 module.exports.postAtour = async (req, res, next) => {
     try {
 
