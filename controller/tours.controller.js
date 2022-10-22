@@ -1,4 +1,4 @@
-const { createATourService, getAlltoursService } = require("../services/tours.service")
+const { createATourService, getAlltoursService, getAtourByIdService } = require("../services/tours.service")
 
 
 // get all data
@@ -37,7 +37,6 @@ module.exports.getAlltours = async (req, res, next) => {
 // post a data
 module.exports.postAtour = async (req, res, next) => {
     try {
-
         const result = await createATourService(req.body);
 
         res.status(200).json({
@@ -54,3 +53,26 @@ module.exports.postAtour = async (req, res, next) => {
     }
 
 }
+
+
+// get a tour by id 
+module.exports.getAtourById = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        console.log(id);
+        const data = await getAtourByIdService(id);
+        res.status(200).json({
+            message: "Get the data successfully",
+            data: data
+        })
+
+    } catch (error) {
+        res.status(400).json({
+            status: "Failed",
+            message: "Cann't get the data by id",
+            error: error.message
+        })
+    }
+
+}
+

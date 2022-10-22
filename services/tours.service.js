@@ -12,3 +12,10 @@ exports.createATourService = async (data) => {
     const result = await Tour.create(data);
     return result;
 }
+
+
+exports.getAtourByIdService = async (id) => {
+    const result = await Tour.findById(id)
+    return result
+
+}
