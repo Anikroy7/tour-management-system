@@ -1,5 +1,6 @@
 const express = require('express');
-const toursController = require('../controller/tours.controller')
+const toursController = require('../controller/tours.controller');
+const viewCount = require('../middleware/viewCount');
 
 const router = express.Router();
 
@@ -8,6 +9,6 @@ router.route('/')
     .post(toursController.postAtour)
 
 router.route('/:id')
-    .get(toursController.getAtourById)
+    .get(viewCount, toursController.getAtourById)
 
 module.exports = router;    

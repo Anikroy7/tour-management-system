@@ -59,7 +59,6 @@ module.exports.postAtour = async (req, res, next) => {
 module.exports.getAtourById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        console.log(id);
         const data = await getAtourByIdService(id);
         res.status(200).json({
             message: "Get the data successfully",

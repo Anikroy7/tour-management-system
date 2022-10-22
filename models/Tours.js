@@ -46,7 +46,8 @@ const toursSchema = new Schema({
             values: ['available', "unavailable"],
             message: "Satus shouldn't be this {value}"
         }
-    }
+    },
+    viewCount: Number
 }, {
     timestamps: true,
 })
